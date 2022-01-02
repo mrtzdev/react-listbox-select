@@ -1,6 +1,7 @@
 import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
+import css from "rollup-plugin-import-css";
 import pkg from "./package.json";
 
 export default {
@@ -18,5 +19,8 @@ export default {
     }),
     resolve(),
     commonjs(),
+    css({
+      output: "react-listbox-select",
+    }),
   ],
 };

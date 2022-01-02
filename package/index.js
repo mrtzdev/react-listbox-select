@@ -1,7 +1,9 @@
 import React from "react";
 
-const NPMComponent = () => {
+import "./styles/styles.css";
+
+const ListBoxSelect = () => {
   return <div>Hello, Rollup Test</div>;
 };
 
-export default NPMComponent;
+export default ListBoxSelect;

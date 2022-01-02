@@ -1,7 +1,7 @@
 import React from 'react';
 
-var NPMComponent = function NPMComponent() {
+var ListBoxSelect = function ListBoxSelect() {
   return /*#__PURE__*/React.createElement("div", null, "Hello, Rollup Test");
 };
 
-export { NPMComponent as default };
+export { ListBoxSelect as default };

@@ -1,0 +1,89 @@
+.react-listbox-select * {
+  box-sizing: border-box;
+}
+
+.selected {
+  color: red;
+}
+
+.filter-module {
+  font-size: 15px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+.headline-filter {
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.btn-filter {
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+  transition: color 0.2s ease 0s;
+  border: medium none;
+  background: transparent none repeat scroll 0% 0%;
+  padding: 0px;
+  cursor: pointer;
+  font-size: 15px;
+  position: relative;
+}
+
+.selected .btn-filter {
+  background-color: #fff;
+}
+
+.btn-filter:before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgb(100, 99, 99);
+}
+
+.selected .btn-filter:before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  background-color: blue;
+  border: 1px solid blue;
+}
+
+.selected .btn-filter .filter-label {
+  color: #000;
+}
+
+.filter-title {
+  padding: 14px 0 2px;
+  font-weight: bold;
+}
+.filter-item {
+  padding: 6px 0;
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  text-align: left;
+}
+
+.filter-label {
+  padding-left: 20px;
+  color: rgb(100, 99, 99);
+}
+.filter-checkbox {
+  padding-top: 3px;
+}
