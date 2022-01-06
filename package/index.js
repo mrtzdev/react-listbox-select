@@ -1,9 +1,5 @@
-import React from "react";
-
 import "./styles/styles.css";
 
-const ListBoxSelect = () => {
-  return <div>Hello, Rollup Test</div>;
-};
+import ListBoxSelect from "./ListBoxSelect";
 
-export default ListBoxSelect;
+export { ListBoxSelect };

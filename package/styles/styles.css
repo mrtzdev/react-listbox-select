@@ -2,28 +2,28 @@
   box-sizing: border-box;
 }
 
-.selected {
+.react-listbox-select .selected {
   color: red;
 }
 
-.filter-module {
+.react-listbox-select .filter-module {
   font-size: 15px;
 }
 
-ul {
+.react-listbox-select ul {
   list-style: none;
   margin: 0;
   padding: 0;
   font-size: 15px;
 }
 
-.headline-filter {
+.react-listbox-select .listbox-title {
   text-transform: uppercase;
   font-size: 16px;
   margin-bottom: 6px;
 }
 
-.btn-filter {
+.react-listbox-select .btn-filter {
   display: flex;
   -moz-box-align: center;
   align-items: center;
@@ -39,11 +39,11 @@ ul {
   position: relative;
 }
 
-.selected .btn-filter {
+.react-listbox-select .selected .btn-filter {
   background-color: #fff;
 }
 
-.btn-filter:before {
+.react-listbox-select .btn-filter:before {
   content: "";
   position: absolute;
   left: 0px;
@@ -53,7 +53,7 @@ ul {
   border: 1px solid rgb(100, 99, 99);
 }
 
-.selected .btn-filter:before {
+.react-listbox-select .selected .btn-filter:before {
   content: "";
   position: absolute;
   left: 0px;
@@ -64,15 +64,15 @@ ul {
   border: 1px solid blue;
 }
 
-.selected .btn-filter .filter-label {
+.react-listbox-select .selected .btn-filter .filter-label {
   color: #000;
 }
 
-.filter-title {
+.react-listbox-select .filter-title {
   padding: 14px 0 2px;
   font-weight: bold;
 }
-.filter-item {
+.react-listbox-select .filter-item {
   padding: 6px 0;
   display: flex;
   -moz-box-align: center;
@@ -80,10 +80,10 @@ ul {
   text-align: left;
 }
 
-.filter-label {
+.react-listbox-select .filter-label {
   padding-left: 20px;
   color: rgb(100, 99, 99);
 }
-.filter-checkbox {
+.react-listbox-select .filter-checkbox {
   padding-top: 3px;
 }

@@ -2,6 +2,7 @@ import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import css from "rollup-plugin-import-css";
+import copy from "rollup-plugin-copy";
 import pkg from "./package.json";
 
 export default {
@@ -21,6 +22,9 @@ export default {
     commonjs(),
     css({
       output: "react-listbox-select",
+    }),
+    copy({
+      targets: [{ src: "package/assets/**/*", dest: "dist/assets" }],
     }),
   ],
 };
