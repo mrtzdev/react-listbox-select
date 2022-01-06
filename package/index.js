@@ -1,5 +1,6 @@
 import "./styles/styles.css";
 
-import ListBoxSelect from "./ListBoxSelect";
+import ListboxSelect from "./ListboxSelect";
+import ListboxSelectMultiple from "./ListboxSelectMultiple";
 
-export { ListBoxSelect };
+export { ListboxSelect, ListboxSelectMultiple };

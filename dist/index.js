@@ -1,5 +1,31 @@
 import React from 'react';
 
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    enumerableOnly && (symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    })), keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = null != arguments[i] ? arguments[i] : {};
+    i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
+      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+    });
+  }
+
+  return target;
+}
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -1179,7 +1205,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 var PropTypes = propTypes.exports;
 
-var ListBoxSelect = function ListBoxSelect(props) {
+var ListboxSelect = function ListboxSelect(props) {
   var useState = React.useState,
       useEffect = React.useEffect;
 
@@ -1213,7 +1239,7 @@ var ListBoxSelect = function ListBoxSelect(props) {
 
     for (var i = 0; i < arr.length; i++) {
       if (selectedItems.indexOf(arr[i].value) > -1) filteredObject = arr[i];
-    } /// callback selected
+    } /// callback selected ???
 
 
     if (hasClicked) {
@@ -1253,7 +1279,7 @@ var ListBoxSelect = function ListBoxSelect(props) {
     }, " ", filter.label))));
   }))), /*#__PURE__*/React.createElement("div", null, "selected:", /*#__PURE__*/React.createElement("pre", null, JSON.stringify(selected, null, 2))))), " ");
 };
-ListBoxSelect.propTypes = {
+ListboxSelect.propTypes = {
   title: PropTypes.string,
   list: PropTypes.array.isRequired,
   className: PropTypes.string,
@@ -1261,4 +1287,88 @@ ListBoxSelect.propTypes = {
   value: PropTypes.object
 };
 
-export { ListBoxSelect };
+var ListboxSelectMultiple = function ListboxSelectMultiple(props) {
+  var useState = React.useState,
+      useEffect = React.useEffect;
+
+  var _useState = useState({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      selected = _useState2[0],
+      setSelected = _useState2[1];
+
+  var _useState3 = useState(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      hasClicked = _useState4[0],
+      setHasClicked = _useState4[1];
+
+  var className = props.className,
+      list = props.list,
+      title = props.title,
+      onChange = props.onChange,
+      values = props.values;
+
+  var selectFilter = function selectFilter(selectId) {
+    setSelected(_objectSpread2(_objectSpread2({}, selected), {}, _defineProperty({}, selectId, !selected[selectId])));
+  };
+
+  useEffect(function () {
+    var getSelectedFilters = Object.keys(selected).filter(function (e) {
+      return selected[e];
+    });
+    var filteredArray = [];
+    var ids = getSelectedFilters;
+    var arr = list;
+
+    for (var i = 0; i < arr.length; i++) {
+      if (ids.indexOf(arr[i].value) > -1) filteredArray.push(arr[i]);
+    } /// callback selected
+
+
+    if (hasClicked) {
+      onChange(filteredArray);
+    }
+  }, [selected]); /// set the initial selected items
+
+  useEffect(function () {
+    if (values != undefined) {
+      var newObject = values.reduce(function (acc, filter) {
+        acc[filter.value] = true;
+        return acc;
+      }, {});
+      console.log(newObject);
+      setSelected(newObject);
+    }
+  }, []);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "react-listbox-select ".concat(className ? className : "")
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "headline-filter"
+  }, title), /*#__PURE__*/React.createElement("div", {
+    className: "filter-container"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, list.map(function (filter) {
+    return /*#__PURE__*/React.createElement("li", {
+      key: filter.value,
+      className: selected[filter.value] ? "selected" : ""
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        selectFilter(filter.value);
+        setHasClicked(true);
+      },
+      className: "btn-filter",
+      "aria-label": filter.label
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "filter-item"
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "filter-label"
+    }, " ", filter.label))));
+  }))), /*#__PURE__*/React.createElement("div", null, "selected:", /*#__PURE__*/React.createElement("pre", null, JSON.stringify(selected, null, 2))))));
+};
+ListboxSelectMultiple.propTypes = {
+  title: PropTypes.string,
+  list: PropTypes.array.isRequired,
+  onChange: PropTypes.func,
+  values: PropTypes.array.isRequired,
+  className: PropTypes.string
+};
+
+export { ListboxSelect, ListboxSelectMultiple };

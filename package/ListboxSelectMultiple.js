@@ -1,42 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
-const ListboxSelect = (props) => {
+const ListboxSelectMultiple = (props) => {
   const { useState, useEffect } = React;
+
   const [selected, setSelected] = useState({});
   const [hasClicked, setHasClicked] = useState(false);
 
-  const { className, list, title, onChange, value } = props;
+  const { className, list, title, onChange, values } = props;
 
   const selectFilter = (selectId) => {
-    setSelected({ [selectId]: !selected[selectId] });
+    setSelected({ ...selected, [selectId]: !selected[selectId] });
   };
 
   useEffect(() => {
     const getSelectedFilters = Object.keys(selected).filter((e) => selected[e]);
 
-    let selectedItems = getSelectedFilters;
+    let filteredArray = [];
+    let ids = getSelectedFilters;
     let arr = list;
 
-    let filteredObject = {};
-
     for (let i = 0; i < arr.length; i++) {
-      if (selectedItems.indexOf(arr[i].value) > -1) filteredObject = arr[i];
+      if (ids.indexOf(arr[i].value) > -1) filteredArray.push(arr[i]);
     }
 
-    /// callback selected ???
+    /// callback selected
     if (hasClicked) {
-      onChange(filteredObject);
+      onChange(filteredArray);
     }
   }, [selected]);
 
   /// set the initial selected items
 
   useEffect(() => {
-    if (value != undefined && Object.keys(value).length) {
-      const newObject = {
-        [value.value]: true,
-      };
-      // console.log(newObject);
+    if (values != undefined) {
+      const newObject = values.reduce((acc, filter) => {
+        acc[filter.value] = true;
+        return acc;
+      }, {});
+      console.log(newObject);
       setSelected(newObject);
     }
   }, []);
@@ -76,17 +77,17 @@ const ListboxSelect = (props) => {
             <pre>{JSON.stringify(selected, null, 2)}</pre>
           </div>
         </div>
-      </div>{" "}
+      </div>
     </>
   );
 };
 
-export default ListboxSelect;
+export default ListboxSelectMultiple;
 
-ListboxSelect.propTypes = {
+ListboxSelectMultiple.propTypes = {
   title: PropTypes.string,
   list: PropTypes.array.isRequired,
-  className: PropTypes.string,
   onChange: PropTypes.func,
-  value: PropTypes.object,
+  values: PropTypes.array.isRequired,
+  className: PropTypes.string,
 };
