@@ -36,7 +36,7 @@ const ListboxSelect = (props) => {
       const newObject = {
         [value.value]: true,
       };
-      // console.log(newObject);
+
       setSelected(newObject);
     }
   }, []);

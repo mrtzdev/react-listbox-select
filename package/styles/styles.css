@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-.react-listbox-select .selected {
-  color: red;
-}
-
 .react-listbox-select .filter-module {
   font-size: 15px;
 }
@@ -47,9 +43,9 @@
   content: "";
   position: absolute;
   left: 0px;
-  top: 9px;
-  width: 10px;
-  height: 10px;
+  top: 8px;
+  width: 11px;
+  height: 11px;
   border: 1px solid rgb(100, 99, 99);
 }
 
@@ -57,11 +53,22 @@
   content: "";
   position: absolute;
   left: 0px;
-  top: 9px;
-  width: 10px;
-  height: 10px;
-  background-color: blue;
-  border: 1px solid blue;
+  top: 8px;
+  width: 11px;
+  height: 11px;
+  border: 1px solid #000;
+}
+
+.react-listbox-select .selected .btn-filter:after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 11px;
+  width: 9px;
+  height: 9px;
+  background-image: url("./assets/check.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .react-listbox-select .selected .btn-filter .filter-label {

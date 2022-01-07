@@ -1249,8 +1249,7 @@ var ListboxSelect = function ListboxSelect(props) {
 
   useEffect(function () {
     if (value != undefined && Object.keys(value).length) {
-      var newObject = _defineProperty({}, value.value, true); // console.log(newObject);
-
+      var newObject = _defineProperty({}, value.value, true);
 
       setSelected(newObject);
     }
