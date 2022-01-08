@@ -1223,7 +1223,8 @@ var ListboxSelect = function ListboxSelect(props) {
       list = props.list,
       title = props.title,
       onChange = props.onChange,
-      value = props.value;
+      value = props.value,
+      prefixId = props.prefixId;
 
   var selectFilter = function selectFilter(selectId) {
     setSelected(_defineProperty({}, selectId, !selected[selectId]));
@@ -1239,7 +1240,7 @@ var ListboxSelect = function ListboxSelect(props) {
 
     for (var i = 0; i < arr.length; i++) {
       if (selectedItems.indexOf(arr[i].value) > -1) filteredObject = arr[i];
-    } /// callback selected ???
+    } /// callback selected
 
 
     if (hasClicked) {
@@ -1257,13 +1258,22 @@ var ListboxSelect = function ListboxSelect(props) {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "react-listbox-select ".concat(className ? className : "")
   }, /*#__PURE__*/React.createElement("div", {
+    id: "rlsm_elem_" + prefixId,
     className: "headline-filter"
   }, title), /*#__PURE__*/React.createElement("div", {
     className: "filter-container"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, list.map(function (filter) {
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", {
+    id: "rlsm_elem_list_" + prefixId,
+    role: "listbox",
+    "aria-labelledby": "rlsm_elem_" + prefixId
+  }, list.map(function (filter) {
     return /*#__PURE__*/React.createElement("li", {
       key: filter.value,
-      className: selected[filter.value] ? "selected" : ""
+      className: selected[filter.value] ? "selected" : "",
+      role: "option",
+      "aria-selected": selected[filter.value] ? "true" : "false",
+      "aria-label": filter.label,
+      id: "rlsm_elem_" + prefixId + "_" + filter.value
     }, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
         selectFilter(filter.value);
@@ -1283,7 +1293,11 @@ ListboxSelect.propTypes = {
   list: PropTypes.array.isRequired,
   className: PropTypes.string,
   onChange: PropTypes.func,
-  value: PropTypes.object
+  value: PropTypes.object,
+  prefixId: PropTypes.string
+};
+ListboxSelect.defaultProps = {
+  prefixId: "_single"
 };
 
 var ListboxSelectMultiple = function ListboxSelectMultiple(props) {
@@ -1304,7 +1318,8 @@ var ListboxSelectMultiple = function ListboxSelectMultiple(props) {
       list = props.list,
       title = props.title,
       onChange = props.onChange,
-      values = props.values;
+      values = props.values,
+      prefixId = props.prefixId;
 
   var selectFilter = function selectFilter(selectId) {
     setSelected(_objectSpread2(_objectSpread2({}, selected), {}, _defineProperty({}, selectId, !selected[selectId])));
@@ -1341,13 +1356,23 @@ var ListboxSelectMultiple = function ListboxSelectMultiple(props) {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "react-listbox-select ".concat(className ? className : "")
   }, /*#__PURE__*/React.createElement("div", {
+    id: "rlsm_elem_" + prefixId,
     className: "headline-filter"
   }, title), /*#__PURE__*/React.createElement("div", {
     className: "filter-container"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", null, list.map(function (filter) {
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", {
+    id: "rlsm_elem_list_" + prefixId,
+    role: "listbox",
+    "aria-labelledby": "rlsm_elem_" + prefixId,
+    "aria-multiselectable": "true"
+  }, list.map(function (filter) {
     return /*#__PURE__*/React.createElement("li", {
       key: filter.value,
-      className: selected[filter.value] ? "selected" : ""
+      className: selected[filter.value] ? "selected" : "",
+      role: "option",
+      "aria-selected": selected[filter.value] ? "true" : "false",
+      "aria-label": filter.label,
+      id: "rlsm_elem_" + prefixId + "_" + filter.value
     }, /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
         selectFilter(filter.value);
@@ -1367,7 +1392,11 @@ ListboxSelectMultiple.propTypes = {
   list: PropTypes.array.isRequired,
   onChange: PropTypes.func,
   values: PropTypes.array.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  prefixId: PropTypes.string
+};
+ListboxSelectMultiple.defaultProps = {
+  prefixId: "_multiple"
 };
 
 export { ListboxSelect, ListboxSelectMultiple };

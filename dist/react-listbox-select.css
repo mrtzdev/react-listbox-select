@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-.react-listbox-select .selected {
-  color: red;
-}
-
 .react-listbox-select .filter-module {
   font-size: 15px;
 }

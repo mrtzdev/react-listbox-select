@@ -5,7 +5,7 @@ const ListboxSelect = (props) => {
   const [selected, setSelected] = useState({});
   const [hasClicked, setHasClicked] = useState(false);
 
-  const { className, list, title, onChange, value } = props;
+  const { className, list, title, onChange, value, prefixId } = props;
 
   const selectFilter = (selectId) => {
     setSelected({ [selectId]: !selected[selectId] });
@@ -23,7 +23,7 @@ const ListboxSelect = (props) => {
       if (selectedItems.indexOf(arr[i].value) > -1) filteredObject = arr[i];
     }
 
-    /// callback selected ???
+    /// callback selected
     if (hasClicked) {
       onChange(filteredObject);
     }
@@ -44,15 +44,25 @@ const ListboxSelect = (props) => {
   return (
     <>
       <div className={`react-listbox-select ${className ? className : ""}`}>
-        <div className="headline-filter">{title}</div>
+        <div id={"rlsm_elem_" + prefixId} className="headline-filter">
+          {title}
+        </div>
         <div className="filter-container">
           <div>
-            <ul>
+            <ul
+              id={"rlsm_elem_list_" + prefixId}
+              role="listbox"
+              aria-labelledby={"rlsm_elem_" + prefixId}
+            >
               {list.map((filter) => {
                 return (
                   <li
                     key={filter.value}
                     className={selected[filter.value] ? "selected" : ""}
+                    role="option"
+                    aria-selected={selected[filter.value] ? "true" : "false"}
+                    aria-label={filter.label}
+                    id={"rlsm_elem_" + prefixId + "_" + filter.value}
                   >
                     <button
                       onClick={() => {
@@ -89,4 +99,9 @@ ListboxSelect.propTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.object,
+  prefixId: PropTypes.string,
+};
+
+ListboxSelect.defaultProps = {
+  prefixId: "_single",
 };
