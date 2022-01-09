@@ -1259,9 +1259,9 @@ var ListboxSelect = function ListboxSelect(props) {
     className: "react-listbox-select ".concat(className ? className : "")
   }, /*#__PURE__*/React.createElement("div", {
     id: "rlsm_elem_" + prefixId,
-    className: "headline-filter"
+    className: "listbox-title"
   }, title), /*#__PURE__*/React.createElement("div", {
-    className: "filter-container"
+    className: "listbox-container"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", {
     id: "rlsm_elem_list_" + prefixId,
     role: "listbox",
@@ -1314,15 +1314,26 @@ var ListboxSelectMultiple = function ListboxSelectMultiple(props) {
       hasClicked = _useState4[0],
       setHasClicked = _useState4[1];
 
+  var _useState5 = useState(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      visible = _useState6[0],
+      setVisible = _useState6[1];
+
   var className = props.className,
       list = props.list,
       title = props.title,
       onChange = props.onChange,
       values = props.values,
-      prefixId = props.prefixId;
+      prefixId = props.prefixId,
+      scrollable = props.scrollable,
+      collapsible = props.collapsible;
 
   var selectFilter = function selectFilter(selectId) {
     setSelected(_objectSpread2(_objectSpread2({}, selected), {}, _defineProperty({}, selectId, !selected[selectId])));
+  };
+
+  var expandList = function expandList() {
+    setVisible(!visible);
   };
 
   useEffect(function () {
@@ -1348,23 +1359,30 @@ var ListboxSelectMultiple = function ListboxSelectMultiple(props) {
       var newObject = values.reduce(function (acc, filter) {
         acc[filter.value] = true;
         return acc;
-      }, {});
-      console.log(newObject);
+      }, {}); // console.log(newObject);
+
       setSelected(newObject);
     }
   }, []);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "react-listbox-select ".concat(className ? className : "")
-  }, /*#__PURE__*/React.createElement("div", {
+  }, collapsible ? /*#__PURE__*/React.createElement("div", {
+    onClick: function onClick() {
+      expandList();
+    },
+    id: "rlsm_elem_" + prefixId,
+    className: "listbox-title clickable  ".concat(visible ? "visible" : "")
+  }, title) : /*#__PURE__*/React.createElement("div", {
     id: "rlsm_elem_" + prefixId,
     className: "headline-filter"
   }, title), /*#__PURE__*/React.createElement("div", {
-    className: "filter-container"
+    className: "listbox-container ".concat(collapsible ? "collapsible" : "", " ").concat(visible ? "visible" : "")
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", {
     id: "rlsm_elem_list_" + prefixId,
     role: "listbox",
     "aria-labelledby": "rlsm_elem_" + prefixId,
-    "aria-multiselectable": "true"
+    "aria-multiselectable": "true",
+    className: "list ".concat(scrollable ? "scrollable" : "")
   }, list.map(function (filter) {
     return /*#__PURE__*/React.createElement("li", {
       key: filter.value,
@@ -1393,10 +1411,14 @@ ListboxSelectMultiple.propTypes = {
   onChange: PropTypes.func,
   values: PropTypes.array.isRequired,
   className: PropTypes.string,
-  prefixId: PropTypes.string
+  prefixId: PropTypes.string,
+  scrollable: PropTypes.bool,
+  collapsible: PropTypes.bool
 };
 ListboxSelectMultiple.defaultProps = {
-  prefixId: "_multiple"
+  prefixId: "_multiple",
+  scrollable: false,
+  collapsible: false
 };
 
 export { ListboxSelect, ListboxSelectMultiple };

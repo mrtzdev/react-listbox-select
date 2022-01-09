@@ -44,10 +44,10 @@ const ListboxSelect = (props) => {
   return (
     <>
       <div className={`react-listbox-select ${className ? className : ""}`}>
-        <div id={"rlsm_elem_" + prefixId} className="headline-filter">
+        <div id={"rlsm_elem_" + prefixId} className="listbox-title">
           {title}
         </div>
-        <div className="filter-container">
+        <div className="listbox-container">
           <div>
             <ul
               id={"rlsm_elem_list_" + prefixId}

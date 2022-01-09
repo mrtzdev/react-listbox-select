@@ -5,11 +5,25 @@ const ListboxSelectMultiple = (props) => {
 
   const [selected, setSelected] = useState({});
   const [hasClicked, setHasClicked] = useState(false);
+  const [visible, setVisible] = useState(false);
 
-  const { className, list, title, onChange, values, prefixId } = props;
+  const {
+    className,
+    list,
+    title,
+    onChange,
+    values,
+    prefixId,
+    scrollable,
+    collapsible,
+  } = props;
 
   const selectFilter = (selectId) => {
     setSelected({ ...selected, [selectId]: !selected[selectId] });
+  };
+
+  const expandList = () => {
+    setVisible(!visible);
   };
 
   useEffect(() => {
@@ -37,7 +51,7 @@ const ListboxSelectMultiple = (props) => {
         acc[filter.value] = true;
         return acc;
       }, {});
-      console.log(newObject);
+      // console.log(newObject);
       setSelected(newObject);
     }
   }, []);
@@ -45,16 +59,34 @@ const ListboxSelectMultiple = (props) => {
   return (
     <>
       <div className={`react-listbox-select ${className ? className : ""}`}>
-        <div id={"rlsm_elem_" + prefixId} className="headline-filter">
-          {title}
-        </div>
-        <div className="filter-container">
+        {collapsible ? (
+          <div
+            onClick={() => {
+              expandList();
+            }}
+            id={"rlsm_elem_" + prefixId}
+            className={`listbox-title clickable  ${visible ? "visible" : ""}`}
+          >
+            {title}
+          </div>
+        ) : (
+          <div id={"rlsm_elem_" + prefixId} className="listbox-title">
+            {title}
+          </div>
+        )}
+
+        <div
+          className={`listbox-container ${collapsible ? "collapsible" : ""} ${
+            visible ? "visible" : ""
+          }`}
+        >
           <div>
             <ul
               id={"rlsm_elem_list_" + prefixId}
               role="listbox"
               aria-labelledby={"rlsm_elem_" + prefixId}
               aria-multiselectable="true"
+              className={`list ${scrollable ? "scrollable" : ""}`}
             >
               {list.map((filter) => {
                 return (
@@ -102,8 +134,12 @@ ListboxSelectMultiple.propTypes = {
   values: PropTypes.array.isRequired,
   className: PropTypes.string,
   prefixId: PropTypes.string,
+  scrollable: PropTypes.bool,
+  collapsible: PropTypes.bool,
 };
 
 ListboxSelectMultiple.defaultProps = {
   prefixId: "_multiple",
+  scrollable: false,
+  collapsible: false,
 };
