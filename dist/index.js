@@ -1374,7 +1374,7 @@ var ListboxSelectMultiple = function ListboxSelectMultiple(props) {
     className: "listbox-title clickable  ".concat(visible ? "visible" : "")
   }, title) : /*#__PURE__*/React.createElement("div", {
     id: "rlsm_elem_" + prefixId,
-    className: "headline-filter"
+    className: "listbox-title"
   }, title), /*#__PURE__*/React.createElement("div", {
     className: "listbox-container ".concat(collapsible ? "collapsible" : "", " ").concat(visible ? "visible" : "")
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("ul", {

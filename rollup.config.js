@@ -12,7 +12,7 @@ export default {
     format: "es",
     exports: "auto",
   },
-  external: ["react"],
+  external: Object.keys(pkg.peerDependencies),
   plugins: [
     babel({
       babelHelpers: "bundled",

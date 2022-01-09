@@ -1,10 +1,17 @@
 {
   "name": "react-listbox-select",
   "version": "1.0.0",
-  "description": "A Rollup starter for React components",
+  "description": "A listbox component for react",
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/mrtzdev/react-listbox-select"
+	},
   "keywords": [
-    "rollup",
-    "react"
+    "react",
+    "listbox",
+    "select",
+    "filter",
+    "rollup"
   ],
   "main": "dist/index.js",
   "scripts": {
@@ -13,6 +20,10 @@
   },
   "author": "mrtzdev",
   "license": "MIT",
+  "peerDependencies": {
+		"react": ">=16.8.0",
+		"react-dom": ">=16.8.0"
+	},
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
