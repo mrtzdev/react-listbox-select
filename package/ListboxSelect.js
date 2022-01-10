@@ -4,11 +4,25 @@ const ListboxSelect = (props) => {
   const { useState, useEffect } = React;
   const [selected, setSelected] = useState({});
   const [hasClicked, setHasClicked] = useState(false);
+  const [visible, setVisible] = useState(false);
 
-  const { className, list, title, onChange, value, prefixId } = props;
+  const {
+    className,
+    list,
+    title,
+    onChange,
+    value,
+    prefixId,
+    scrollable,
+    collapsible,
+  } = props;
 
   const selectFilter = (selectId) => {
     setSelected({ [selectId]: !selected[selectId] });
+  };
+
+  const expandList = () => {
+    setVisible(!visible);
   };
 
   useEffect(() => {
@@ -44,15 +58,33 @@ const ListboxSelect = (props) => {
   return (
     <>
       <div className={`react-listbox-select ${className ? className : ""}`}>
-        <div id={"rlsm_elem_" + prefixId} className="listbox-title">
-          {title}
-        </div>
-        <div className="listbox-container">
+        {collapsible ? (
+          <div
+            onClick={() => {
+              expandList();
+            }}
+            id={"rlsm_elem_" + prefixId}
+            className={`listbox-title clickable  ${visible ? "visible" : ""}`}
+          >
+            {title}
+          </div>
+        ) : (
+          <div id={"rlsm_elem_" + prefixId} className="listbox-title">
+            {title}
+          </div>
+        )}
+
+        <div
+          className={`listbox-container ${collapsible ? "collapsible" : ""} ${
+            visible ? "visible" : ""
+          }`}
+        >
           <div>
             <ul
               id={"rlsm_elem_list_" + prefixId}
               role="listbox"
               aria-labelledby={"rlsm_elem_" + prefixId}
+              className={`list ${scrollable ? "scrollable" : ""}`}
             >
               {list.map((filter) => {
                 return (
@@ -100,8 +132,12 @@ ListboxSelect.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.object,
   prefixId: PropTypes.string,
+  scrollable: PropTypes.bool,
+  collapsible: PropTypes.bool,
 };
 
 ListboxSelect.defaultProps = {
   prefixId: "_single",
+  scrollable: false,
+  collapsible: false,
 };
