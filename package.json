@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "A listbox component for react",
   "repository": {
-		"type": "git",
-		"url": "https://github.com/mrtzdev/react-listbox-select"
-	},
+    "type": "git",
+    "url": "https://github.com/mrtzdev/react-listbox-select"
+  },
   "keywords": [
     "react",
     "listbox",
@@ -21,9 +21,9 @@
   "author": "mrtzdev",
   "license": "MIT",
   "peerDependencies": {
-		"react": ">=16.8.0",
-		"react-dom": ">=16.8.0"
-	},
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
