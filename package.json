@@ -14,6 +14,7 @@
     "rollup"
   ],
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "scripts": {
     "build": "rollup -c",
     "test": "jest"

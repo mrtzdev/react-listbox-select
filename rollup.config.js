@@ -7,11 +7,16 @@ import pkg from "./package.json";
 
 export default {
   input: "package/index.js",
-  output: {
-    file: pkg.main,
-    format: "es",
-    exports: "auto",
-  },
+  output: [
+    {
+      file: pkg.main,
+      format: "cjs",
+    },
+    {
+      file: pkg.module,
+      format: "esm",
+    },
+  ],
   external: Object.keys(pkg.peerDependencies),
   plugins: [
     babel({
