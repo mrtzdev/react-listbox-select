@@ -47,6 +47,8 @@ const Example = () => {
 export default Example;
 ```
 
+**Multi Select**
+
 ```tsx
 import React, { useState } from "react";
 import { ListboxSelectMultiple } from "react-listbox-select";
@@ -67,7 +69,7 @@ const Example = () => {
   return (
     <div>
       <h1>Select Options Multiple</h1>
-      <pre>{JSON.stringify(selected)}</pre>
+      <pre>{JSON.stringify(selectedMultiple)}</pre>
       <ListboxSelectMultiple
         title="Multi Listbox Select"
         list={multiSelectData}
