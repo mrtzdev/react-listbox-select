@@ -72,7 +72,7 @@ const Example = () => {
       <pre>{JSON.stringify(selectedMultiple)}</pre>
       <ListboxSelectMultiple
         title="Multi Listbox Select"
-        list={multiSelectData}
+        list={options}
         onChange={selectChangeMultiple}
         values={selectedMultiple}
         className="my-class-name"
@@ -86,3 +86,17 @@ const Example = () => {
 
 export default Example;
 ```
+
+## 👀 Props
+
+| Prop          | Description                                                  | Type                   | Default   |
+| ------------- | ------------------------------------------------------------ | ---------------------- | --------- |
+| `title`       | Title for listbox                                            | `string`               |
+| `list`        | Options for the listbox (is required)                        | `string`               |
+| `className`   | className for the component                                  | `string`               |
+| `onChange`    | onChange callback                                            | `function`             |
+| `value`       | pre-selected option ListboxSelect (is required)              | `{ label:, value: }`   |
+| `values`      | pre-selected options for ListboxSelectMultiple (is required) | `[{ label:, value: }]` |
+| `prefixId`    | Id for aria id                                               | `string`               | `_single` |
+| `scrollable`  | Makes the listbox scrollable                                 | `boolean`              | `false`   |
+| `collapsible` | Makes the listbox collapsible                                | `boolean`              | `false`   |
