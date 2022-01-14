@@ -115,10 +115,6 @@ const ListboxSelectMultiple = (props) => {
               })}
             </ul>
           </div>
-          <div>
-            selected:
-            <pre>{JSON.stringify(selected, null, 2)}</pre>
-          </div>
         </div>
       </div>
     </>
