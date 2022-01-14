@@ -1,5 +1,7 @@
 # react-listbox-select component
 
+![Example](docs/images/listbox-select.gif){:width="250px"}
+
 # Usage
 
 Import the component you want to use;
@@ -8,8 +10,6 @@ Import the component you want to use;
 import { ListboxSelect, ListboxSelectMultiple } from "react-listbox-select";
 import "react-listbox-select/dist/react-listbox-select.css";
 ```
-
-![Example](docs/images/listbox-select.gif)
 
 **Single Select**
 
