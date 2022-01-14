@@ -1,10 +1,8 @@
 # react-listbox-select component
 
-<img src="https://raw.githubusercontent.com/mrtzdev/react-listbox-select/master/docs/images/listbox-select.gif" width="350px">
-
 # Usage
 
-Import the component you want to use;
+Import the component you want to use
 
 ```javascript
 import { ListboxSelect, ListboxSelectMultiple } from "react-listbox-select";
