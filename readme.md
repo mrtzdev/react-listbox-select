@@ -1,6 +1,6 @@
 # react-listbox-select component
 
-<img src="https://raw.githubusercontent.com/mrtzdev/react-listbox-select/master/docs/images/listbox-select.gif" width="250px">
+<img src="https://raw.githubusercontent.com/mrtzdev/react-listbox-select/master/docs/images/listbox-select.gif" width="350px">
 
 # Usage
 
