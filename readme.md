@@ -16,9 +16,9 @@ import React, { useState } from "react";
 import { ListboxSelect } from "react-listbox-select";
 
 const options = [
-  { label: "Grapes 🍇", value: "grapes" },
-  { label: "Mango 🥭", value: "mango" },
-  { label: "Strawberry 🍓", value: "strawberry" },
+  { label: "Grapes", value: "grapes" },
+  { label: "Mango", value: "mango" },
+  { label: "Strawberry", value: "strawberry" },
 ];
 
 const Example = () => {
@@ -54,9 +54,9 @@ import React, { useState } from "react";
 import { ListboxSelectMultiple } from "react-listbox-select";
 
 const options = [
-  { label: "Grapes 🍇", value: "grapes" },
-  { label: "Mango 🥭", value: "mango" },
-  { label: "Strawberry 🍓", value: "strawberry" },
+  { label: "Grapes", value: "grapes" },
+  { label: "Mango", value: "mango" },
+  { label: "Strawberry", value: "strawberry" },
 ];
 
 const Example = () => {
