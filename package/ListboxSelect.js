@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 const ListboxSelect = (props) => {
   const { useState, useEffect } = React;
   const [selected, setSelected] = useState({});
-  const [hasClicked, setHasClicked] = useState(false);
   const [visible, setVisible] = useState(false);
 
   const {
@@ -17,43 +16,22 @@ const ListboxSelect = (props) => {
     collapsible,
   } = props;
 
-  const selectFilter = (selectId) => {
-    setSelected({ [selectId]: !selected[selectId] });
-  };
-
   const expandList = () => {
     setVisible(!visible);
   };
 
-  useEffect(() => {
-    const getSelectedFilters = Object.keys(selected).filter((e) => selected[e]);
+  const selectFilter = (selectValue) => {
+    const findItem = () => {
+      let item = list.find((x) => x.value === selectValue);
+      return item;
+    };
 
-    let selectedItems = getSelectedFilters;
-    let arr = list;
-
-    let filteredObject = {};
-
-    for (let i = 0; i < arr.length; i++) {
-      if (selectedItems.indexOf(arr[i].value) > -1) filteredObject = arr[i];
-    }
-
-    /// callback selected
-    if (hasClicked) {
-      onChange(filteredObject);
-    }
-  }, [selected]);
-
-  /// set the initial selected items
+    onChange(findItem());
+  };
 
   useEffect(() => {
-    if (value != undefined && Object.keys(value).length) {
-      const newObject = {
-        [value.value]: true,
-      };
-
-      setSelected(newObject);
-    }
-  }, []);
+    setSelected(value);
+  }, [value]);
 
   return (
     <>
@@ -90,16 +68,19 @@ const ListboxSelect = (props) => {
                 return (
                   <li
                     key={filter.value}
-                    className={selected[filter.value] ? "selected" : ""}
+                    className={`item ${
+                      filter.value === selected.value ? "selected" : ""
+                    }`}
                     role="option"
-                    aria-selected={selected[filter.value] ? "true" : "false"}
+                    aria-selected={
+                      filter.value === selected.value ? "true" : "false"
+                    }
                     aria-label={filter.label}
                     id={"rlsm_elem_" + prefixId + "_" + filter.value}
                   >
                     <button
                       onClick={() => {
                         selectFilter(filter.value);
-                        setHasClicked(true);
                       }}
                       className="btn-filter"
                       aria-label={filter.label}

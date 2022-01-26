@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 const ListboxSelectMultiple = (props) => {
   const { useState, useEffect } = React;
 
-  const [selected, setSelected] = useState({});
-  const [hasClicked, setHasClicked] = useState(false);
+  const [selected, setSelected] = useState([]);
   const [visible, setVisible] = useState(false);
 
   const {
@@ -18,8 +17,36 @@ const ListboxSelectMultiple = (props) => {
     collapsible,
   } = props;
 
-  const selectFilter = (selectId) => {
-    setSelected({ ...selected, [selectId]: !selected[selectId] });
+  const selectFilter = (selectedValue) => {
+    const findItem = () => {
+      let item = list.find((x) => x.value === selectedValue);
+      return item;
+    };
+
+    /// Check if an Array contains  Object
+    const index = selected.findIndex((element) => {
+      if (element.value === findItem().value) {
+        return true;
+      }
+    });
+    /// object is in array: remove the item else add the item
+    if (index !== -1) {
+      const removeItem = selected.filter(
+        (item) => item.value !== findItem().value
+      );
+      const newArray = removeItem;
+      onChange(newArray);
+    } else {
+      const newArray = [...selected, findItem()];
+      onChange(newArray);
+    }
+  };
+
+  /// find the selected items
+  const findSelected = (v) => {
+    return selected.some(function (el) {
+      return el.value === v;
+    });
   };
 
   const expandList = () => {
@@ -27,34 +54,8 @@ const ListboxSelectMultiple = (props) => {
   };
 
   useEffect(() => {
-    const getSelectedFilters = Object.keys(selected).filter((e) => selected[e]);
-
-    let filteredArray = [];
-    let ids = getSelectedFilters;
-    let arr = list;
-
-    for (let i = 0; i < arr.length; i++) {
-      if (ids.indexOf(arr[i].value) > -1) filteredArray.push(arr[i]);
-    }
-
-    /// callback selected
-    if (hasClicked) {
-      onChange(filteredArray);
-    }
-  }, [selected]);
-
-  /// set the initial selected items
-
-  useEffect(() => {
-    if (values != undefined) {
-      const newObject = values.reduce((acc, filter) => {
-        acc[filter.value] = true;
-        return acc;
-      }, {});
-      // console.log(newObject);
-      setSelected(newObject);
-    }
-  }, []);
+    setSelected(values);
+  }, [values]);
 
   return (
     <>
@@ -92,16 +93,19 @@ const ListboxSelectMultiple = (props) => {
                 return (
                   <li
                     key={filter.value}
-                    className={selected[filter.value] ? "selected" : ""}
-                    role="option"
-                    aria-selected={selected[filter.value] ? "true" : "false"}
-                    aria-label={filter.label}
                     id={"rlsm_elem_" + prefixId + "_" + filter.value}
+                    className={`item ${
+                      findSelected(filter.value) ? "selected" : ""
+                    }`}
+                    role="option"
+                    aria-selected={
+                      findSelected(filter.value) ? "true" : "false"
+                    }
+                    aria-label={filter.label}
                   >
                     <button
                       onClick={() => {
                         selectFilter(filter.value);
-                        setHasClicked(true);
                       }}
                       className="btn-filter"
                       aria-label={filter.label}
