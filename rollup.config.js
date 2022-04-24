@@ -4,6 +4,12 @@ import commonjs from "@rollup/plugin-commonjs";
 import css from "rollup-plugin-import-css";
 import copy from "rollup-plugin-copy";
 import pkg from "./package.json";
+import replace from "rollup-plugin-replace";
+import { terser } from "rollup-plugin-terser";
+
+/// to do: add dev server ...
+
+const env = process.env.NODE_ENV;
 
 export default {
   input: "package/index.js",
@@ -24,7 +30,9 @@ export default {
       exclude: "node_modules/**",
     }),
     resolve(),
+    replace({ "process.env.NODE_ENV": JSON.stringify(env) }),
     commonjs(),
+    env === "production" && terser(),
     css({
       output: "react-listbox-select",
     }),
