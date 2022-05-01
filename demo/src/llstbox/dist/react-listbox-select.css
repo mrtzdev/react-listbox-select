@@ -1,0 +1,137 @@
+.react-listbox-select * {
+  box-sizing: border-box;
+}
+
+.react-listbox-select .filter-module {
+  font-size: 15px;
+}
+
+.react-listbox-select ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+.react-listbox-select ul.scrollable {
+  max-height: 150px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.react-listbox-select .listbox-title {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.react-listbox-select .listbox-title.clickable {
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.react-listbox-select .listbox-title.clickable:after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  top: 4px;
+  width: 13px;
+  height: 13px;
+  background-image: url("/assets/arrowDown.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotateX(0deg);
+}
+
+.react-listbox-select .listbox-title.clickable.visible:after {
+  top: -1px;
+  transform: rotateX(-180deg);
+}
+
+.react-listbox-select .btn-filter {
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  width: 100%;
+  transition: color 0.2s ease 0s;
+  border: medium none;
+  background: transparent none repeat scroll 0% 0%;
+  padding: 0px;
+  cursor: pointer;
+  font-size: 15px;
+  position: relative;
+}
+
+.react-listbox-select .selected .btn-filter {
+  background-color: #eee;
+}
+
+.react-listbox-select .btn-filter:before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  width: 11px;
+  height: 11px;
+  border: 1px solid rgb(100, 99, 99);
+}
+
+.react-listbox-select .selected .btn-filter:before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  width: 11px;
+  height: 11px;
+  border: 1px solid #000;
+}
+
+.react-listbox-select .selected .btn-filter:after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 11px;
+  width: 9px;
+  height: 9px;
+  background-image: url("/assets/check.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.react-listbox-select .selected .btn-filter .filter-label {
+  color: #000;
+  margin-right: 10px;
+}
+
+.react-listbox-select .filter-title {
+  padding: 14px 0 2px;
+  font-weight: bold;
+}
+.react-listbox-select .filter-item {
+  padding: 6px 0;
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  text-align: left;
+}
+
+.react-listbox-select .filter-label {
+  padding-left: 30px;
+  color: rgb(100, 99, 99);
+}
+.react-listbox-select .filter-checkbox {
+  padding-top: 3px;
+}
+
+.react-listbox-select .collapsible {
+  max-height: 0;
+  transition: all 300ms;
+  overflow: hidden;
+}
+
+.react-listbox-select .collapsible.visible {
+  max-height: 500px;
+  transition: all 500ms;
+}
