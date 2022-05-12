@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListboxSelect snapshot renders 1`] = `
+Array [
+  <div
+    className="react-listbox-select my-class-name"
+  >
+    <div
+      className="listbox-title clickable  "
+      id="rlsm_elem_SingleSelect"
+      onClick={[Function]}
+    >
+      Single Listbox Select
+    </div>
+    <div
+      className="listbox-container collapsible "
+    >
+      <div>
+        <ul
+          aria-labelledby="rlsm_elem_SingleSelect"
+          className="list "
+          id="rlsm_elem_list_SingleSelect"
+          role="listbox"
+        >
+          <li
+            aria-label="Grapes"
+            aria-selected="false"
+            className="item "
+            id="rlsm_elem_SingleSelect_grapes"
+            role="option"
+          >
+            <button
+              aria-label="Grapes"
+              className="btn-filter"
+              onClick={[Function]}
+            >
+              <div
+                className="filter-item"
+              >
+                <span
+                  className="filter-label"
+                >
+                   
+                  Grapes
+                </span>
+              </div>
+            </button>
+          </li>
+          <li
+            aria-label="Mango"
+            aria-selected="false"
+            className="item "
+            id="rlsm_elem_SingleSelect_mango"
+            role="option"
+          >
+            <button
+              aria-label="Mango"
+              className="btn-filter"
+              onClick={[Function]}
+            >
+              <div
+                className="filter-item"
+              >
+                <span
+                  className="filter-label"
+                >
+                   
+                  Mango
+                </span>
+              </div>
+            </button>
+          </li>
+          <li
+            aria-label="Strawberry"
+            aria-selected="false"
+            className="item "
+            id="rlsm_elem_SingleSelect_strawberry"
+            role="option"
+          >
+            <button
+              aria-label="Strawberry"
+              className="btn-filter"
+              onClick={[Function]}
+            >
+              <div
+                className="filter-item"
+              >
+                <span
+                  className="filter-label"
+                >
+                   
+                  Strawberry
+                </span>
+              </div>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>,
+  " ",
+]
+`;

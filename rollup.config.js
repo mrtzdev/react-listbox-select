@@ -30,7 +30,10 @@ export default {
       exclude: "node_modules/**",
     }),
     resolve(),
-    replace({ "process.env.NODE_ENV": JSON.stringify(env) }),
+    replace({
+      "process.env.NODE_ENV": JSON.stringify(env),
+      preventAssignment: true,
+    }),
     commonjs(),
     env === "production" && terser(),
     css({
